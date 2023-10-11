@@ -1,0 +1,11 @@
+# Python cache files
+__pycache__/
+
+# SQLite database (even if not in use)
+db.sqlite3
+
+# Virtual environment
+venv/
+
+# OS generated
+.DS_Store
