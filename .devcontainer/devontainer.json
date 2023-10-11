@@ -1,5 +1,5 @@
 {
-    "name": "Python & PostgreSQL",
+    "name": "Django with PostgreSQL",
     "dockerFile": "Dockerfile",
     "forwardPorts": [8000, 5432],
     "settings": {
