@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # third party
+
+    # custom
+    
 ]
 
 MIDDLEWARE = [
@@ -78,7 +83,7 @@ WSGI_APPLICATION = "QuickInsure.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'data'),
+        'NAME': os.environ.get('DB_NAME', 'DATA'),
         'USER': os.environ.get('DB_USER', 'admin'),
         'PASSWORD': os.environ.get('DB_PASSWORD', 'admin'),
         'HOST': os.environ.get('DB_HOST', 'localhost'),
