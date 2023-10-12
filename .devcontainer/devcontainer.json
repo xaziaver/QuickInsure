@@ -1,0 +1,6 @@
+{
+    "name": "Django with PostgreSQL",
+    "dockerFile": "Dockerfile",
+    "forwardPorts": [8000, 5432],
+    "postCreateCommand": "service postgresql start && sudo -u postgres psql -c \"CREATE DATABASE DATA;\" && sudo -u postgres psql -c \"CREATE USER admin WITH PASSWORD 'admin';\" && sudo -u postgres psql -c \"GRANT ALL PRIVILEGES ON DATABASE DATA TO admin;\""
+}
