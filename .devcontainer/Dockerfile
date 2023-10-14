@@ -12,5 +12,8 @@ ENV PYTHONUNBUFFERED 1
 # Set working directory
 WORKDIR /
 
+# Copy the requirements.txt file into the Docker image
+COPY ../requirements.txt requirements.txt
+
 # Install dependencies
 RUN pip install --upgrade pip && pip install -r requirements.txt
