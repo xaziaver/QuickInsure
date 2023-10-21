@@ -19,3 +19,8 @@ su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE data TO admin;\""
 su - postgres -c "psql -c \"ALTER USER admin CREATEDB;\""
 su - postgres -c "psql data -c \"GRANT ALL PRIVILEGES ON SCHEMA public TO admin;\""
 
+# Running migrations
+python manage.py migrate
+
+# Automatically creating a superuser
+echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('txt', '', 'pass')" | python manage.py shell
