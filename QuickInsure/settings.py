@@ -81,13 +81,15 @@ WSGI_APPLICATION = 'QuickInsure.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'DATA'),
-        'USER': os.environ.get('DB_USER', 'admin'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'admin'),
-        'HOST': '127.0.0.1',
+        'NAME': 'data',
+        'USER': 'admin',
+        'PASSWORD': 'admin_password',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
+
+
 
 
 

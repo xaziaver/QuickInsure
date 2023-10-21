@@ -1,6 +1,6 @@
 {
     "name": "Django with PostgreSQL",
     "dockerFile": "Dockerfile",
-    "forwardPorts": [8000],
-    "postCreateCommand": "db_setup.sh"
+    "forwardPorts": [8000, 5432],
+    "postCreateCommand": "/workspaces/QuickInsure/.devcontainer/db_setup.sh"
 }
