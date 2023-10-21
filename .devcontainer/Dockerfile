@@ -1,19 +1,20 @@
+# Using the official Python 3.10 image as a base image
 FROM python:3.10
 
-# Install PostgreSQL client
+# Updating and installing the PostgreSQL client and server
 RUN apt-get update \
-    && apt-get install -y postgresql-client \
+    && apt-get install -y postgresql postgresql-contrib \
     && apt-get clean
 
-# Set environment variables
+# Setting environment variables for Python
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# Set working directory
-WORKDIR /
+# Setting the working directory in the container
+WORKDIR /app
 
-# Copy the requirements.txt file into the Docker image
-COPY ../requirements.txt requirements.txt
+# Copying the requirements.txt file from your host to your current location in the container
+COPY requirements.txt /app/requirements.txt
 
-# Install dependencies
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Installing any needed packages specified in requirements.txt
+RUN pip install --upgrade pip && pip install -r /app/requirements.txt
