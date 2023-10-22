@@ -1,14 +1,14 @@
 from django.db import models
 from django.conf import settings
 
-# property inputs
-class Property(models.Model):
+# risk inputs
+class Risk(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
     size = models.IntegerField()    # sq feet living area
     year_built = models.IntegerField()
 
-    def property_age(self):
+    def risk_age(self):
         current_year = datetime.datetime.now().year
         return current_year - self.year_built
 
@@ -20,7 +20,7 @@ class Property(models.Model):
 
 # quote outputs
 class Quote(models.Model):
-    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    risk = models.ForeignKey(Risk, on_delete=models.CASCADE)
     quote_date = models.DateTimeField(auto_now_add=True)
     quote_amount = models.DecimalField(max_digits=10, decimal_places=2)
     is_latest = models.BooleanField(default=True)

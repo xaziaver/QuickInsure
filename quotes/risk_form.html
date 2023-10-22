@@ -1,0 +1,11 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Add Property</h1>
+    <form method="post">
+        {% csrf_token %}    <!-- A security token to prevent cross-site request forgery -->
+        {{ form.as_p }}     <!-- Render the form fields inside paragrah elements -->
+        
+        <button type="submit">Add Property</button>
+    </form>
+{% endblock %}
