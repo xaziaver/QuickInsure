@@ -1,0 +1,65 @@
+/* Reset some default browser styles */
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, button {
+    margin: 0;
+    padding: 0;
+    border: none;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #F4F8FC; /* Adjusted color for a more subtle background */
+}
+
+.logo img {
+    width: 200px; /* Increased size. However, ensure the image remains sharp. */
+}
+
+.container {
+    width: 100%;
+    max-width: 600px; /* Reduced the maximum width */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/*
+nav {
+     Adjust this
+}
+*/
+
+/* 
+footer {
+    Adjust this
+}
+*/
+
+.messages {
+    list-style-type: none;
+    margin: 20px 0;
+    padding: 0;
+}
+
+.messages li {
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* can add specific message types like error, success, etc. */
+.messages li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.messages li.success {
+    background-color: #d4edda;
+    color: #155724;
+}

@@ -1,12 +1,22 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+{% block additional_styles %}{% endblock %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}QuickInsure{% endblock %}</title>
 </head>
 <body>
-    <nav>
-        <!-- Navigation goes here -->
-    </nav>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="{% static 'images/brand_logo.png' %}" alt="QuickInsure Logo">
+            </div>
+            <nav>
+                <!-- Navigation goes here -->
+            </nav>
+        </div>
+    </header>
     
     <div>
         {% block content %}

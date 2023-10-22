@@ -1,0 +1,13 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+  <p>
+    <a class="generic-button" href="{% url 'logout' %}">Logout</a>
+    <br>
+    <a class="generic-button" href="{% url 'add_risk' %}">Add New Risk</a>
+    <br>
+    <a class="generic-button">Add New Quote</a>
+  </p>
+  <!-- Add more navigation links as needed -->
+{% endblock %}

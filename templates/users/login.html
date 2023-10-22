@@ -1,10 +1,42 @@
 {% extends 'base_generic.html' %}
 
+{% load static %}
+{% block additional_styles %}
+    <link rel="stylesheet" href="{% static 'css/users/login_styles.css' %}">
+{% endblock %}
+
 {% block content %}
+<div class="container">
   <h2>Login</h2>
-  <form method="post">
+  <form method="post" class="login-form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
+    <div class="input-group">
+        <label for="id_username">Username</label>
+        {{ form.username }}
+    </div>
+    <div class="input-group">
+        <label for="id_password">Password</label>
+        {{ form.password }}
+    </div>
+    <button class="login-button" type="submit">Login</button>
+    <div class="alternative-login">
+        <span>Sign in Using</span>
+        <div class="social-buttons">
+            <button class="social-btn fb-btn">F</button>
+            <button class="social-btn tw-btn">T</button>
+            <button class="social-btn g-btn">G</button>
+        </div>
+    </div>
   </form>
+  <a href="{% url 'register' %}" class="register-button">Sign Up</a>
+  {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>
+              {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+</div>
 {% endblock %}

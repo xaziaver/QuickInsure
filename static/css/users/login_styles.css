@@ -1,0 +1,85 @@
+.login-form {
+    background-color: #FFFFFF;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px; /* Set a maximum width to the login form */
+    margin: 0 auto; /* Center the form */
+}
+
+h2 {
+    font-size: 24px; /* Decrease the size a bit */
+    margin-bottom: 20px;
+    color: #4A4A4A; /* Darker shade for better visibility */
+    text-align: center; /* Center the heading */
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.login-button {
+    background-color: #4CAF50;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #45a049;
+}
+
+.alternative-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.social-buttons {
+    display: flex;
+}
+
+.social-btn {
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.fb-btn {
+    background-color: #1877f2;
+}
+
+.tw-btn {
+    background-color: #1da1f2;
+}
+
+.g-btn {
+    background-color: #db4437;
+}
+
+.register-button {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+}

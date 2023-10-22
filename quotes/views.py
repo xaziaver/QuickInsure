@@ -9,4 +9,4 @@ class RiskCreateView(CreateView):
     template_name = 'risk_form.html'  # template to render
 
     # where to redirect after successful form submission
-    success_url = reverse_lazy('risk_list')
+    success_url = reverse_lazy('home')
