@@ -19,6 +19,9 @@ su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE data TO admin;\""
 su - postgres -c "psql -c \"ALTER USER admin CREATEDB;\""
 su - postgres -c "psql data -c \"GRANT ALL PRIVILEGES ON SCHEMA public TO admin;\""
 
+# Making migrations
+python manage.py makemigrations
+
 # Running migrations
 python manage.py migrate
 
