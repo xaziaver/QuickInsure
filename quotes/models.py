@@ -16,6 +16,12 @@ class Risk(models.Model):
         # response = requests.get(f"https://api.example.com/validate_address?address={self.address}")
         # return response.json().get("is_valid", False)
         pass
+    def display(self):
+        message = "Address: " + self.address + \
+                ", Living Area: " + str(self.size) + \
+                ", Year Built: " + str(self.year_built)
+        return message
+
 
 
 # quote outputs

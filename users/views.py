@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
+from quotes.models import Risk
 
 def register(request):
     if request.method == 'POST':
@@ -18,4 +19,6 @@ def register(request):
 
 @login_required
 def home(request):
-    return render(request, 'users/home.html')
+    user_risks = Risk.objects.filter(user_id=request.user.id)
+
+    return render(request, 'users/home.html', {'risks': user_risks})

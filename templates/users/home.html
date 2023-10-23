@@ -2,10 +2,13 @@
 
 {% block content %}
   <h2>Welcome, {{ user.username }}!</h2>
+  <a class="generic-button" href="{% url 'logout' %}">Logout</a>
   <p>
-    <a class="generic-button" href="{% url 'logout' %}">Logout</a>
     <br>
     <a class="generic-button" href="{% url 'add_risk' %}">Add New Risk</a>
+    {% for risk in risks %}
+    <ul>{{ risk.display }}</ul>
+    {% endfor %}
     <br>
     <a class="generic-button">Add New Quote</a>
   </p>
