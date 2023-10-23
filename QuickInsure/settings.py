@@ -41,9 +41,14 @@ INSTALLED_APPS = [
     # third party
 
     # custom
+    'account',
+    'analytics',
+    'claims',
+    'forms',
+    'policies',
     'quotes',
+    'risks',
     'users',
-    
 ]
 
 MIDDLEWARE = [

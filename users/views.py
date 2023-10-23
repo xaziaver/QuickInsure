@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-from quotes.models import Risk
+from risks.models import Risk
 
 def register(request):
     if request.method == 'POST':
