@@ -1,4 +1,4 @@
-{% extends 'base_generic.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
   <h2>Welcome, {{ user.username }}!</h2>
@@ -10,7 +10,7 @@
     <ul>{{ risk.display }}</ul>
     {% endfor %}
     <br>
-    <a class="generic-button">Add New Quote</a>
+    <a class="generic-button" href="{% url 'add_quote' %}">Add New Quote</a>
   </p>
   <!-- Add more navigation links as needed -->
 {% endblock %}
