@@ -1,5 +1,6 @@
 from django.urls import path
+from .views import QuoteStart
 
 urlpatterns = [
-    #path('add_Quote/ ')
+    path('add_quote/', QuoteStart, name="add_quote")
 ]
