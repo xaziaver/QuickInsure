@@ -1,0 +1,41 @@
+.quote-container {
+    padding: 20px;
+}
+
+.progress-bar {
+    height: 20px;
+    background-color: #ccc;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e0e0e0;
+}
+
+.menu button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+    }
+
+    .menu button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}

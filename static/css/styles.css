@@ -7,16 +7,16 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, button {
 }
 
 body {
-    background-color: #F4F8FC; /* Adjusted color for a more subtle background */
+    background-color: #F4F8FC;
 }
 
 .logo img {
-    width: 200px; /* Increased size. However, ensure the image remains sharp. */
+    width: 200px;
 }
 
 .container {
     width: 100%;
-    max-width: 600px; /* Reduced the maximum width */
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
 }
@@ -27,18 +27,6 @@ header {
     align-items: center;
     padding: 20px 0;
 }
-
-/*
-nav {
-     Adjust this
-}
-*/
-
-/* 
-footer {
-    Adjust this
-}
-*/
 
 .messages {
     list-style-type: none;
@@ -53,7 +41,6 @@ footer {
     border-radius: 5px;
 }
 
-/* can add specific message types like error, success, etc. */
 .messages li.error {
     background-color: #f8d7da;
     color: #721c24;

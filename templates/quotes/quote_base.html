@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block additional_styles %}
+    <link rel="stylesheet" href="{% static 'css/quote_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="quote-container container">
+    <div class="progress-bar">
+        <!-- progress bar content -->
+    </div>
+    
+    {% block quote_content %}
+    <!-- quote pages -->
+    {% endblock %}
+    
+    <div class="menu">
+        <button id="back-btn">Back</button>
+        <button id="next-btn">Next</button>
+        <a href="{% url 'home' %}">
+            <button id="home-btn">Home</button>
+        </a>
+    </div>
+</div>
+{% endblock %}
