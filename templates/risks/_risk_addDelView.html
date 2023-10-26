@@ -1,0 +1,10 @@
+<div id="addDelView-container">
+    <button hx-get="{% url 'add_risk' %}" hx-trigger="click" hx-target="#addDelView-container" class="generic-button">
+        Add Risk
+    </button>
+    <select>
+        {% for risk in risks %}
+        <option value="{{ risk.id }}">{{ risk.display }}</option>
+        {% endfor %}
+    </select>
+</div>

@@ -20,5 +20,4 @@ def register(request):
 @login_required
 def home(request):
     user_risks = Risk.objects.filter(user_id=request.user.id)
-
     return render(request, 'users/home.html', {'risks': user_risks})

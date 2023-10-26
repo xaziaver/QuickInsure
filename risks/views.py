@@ -1,12 +1,54 @@
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView
 from .models import Risk
 from .forms import RiskForm
 
 class RiskCreateView(CreateView):
-    model = Risk  # model to interact with
-    form_class = RiskForm  # form to use
-    template_name = 'risk_form.html'  # template to render
+    model = Risk
+    form_class = RiskForm
+    template_name = 'risk_form.html'
 
-    # where to redirect after successful form submission
-    success_url = reverse_lazy('home')
+    # Entry point for GET, POST, etc.
+    def dispatch(self, request, *args, **kwargs):
+        action = request.POST.get('action')
+        print(request.POST)
+        if action == 'cancel':
+            if request.headers.get('HX-Request'):
+                return render(request, 'risks/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=request.user.id)})
+            else:
+                return HttpResponseRedirect(self.get_success_url())
+        elif action == 'add' or action is None:
+            return super().dispatch(request, *args, **kwargs)
+
+    # Called for GET requests
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    # Called for POST requests
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
+    # Returns the form class to be used
+    def get_form_class(self):
+        return super().get_form_class()
+
+    # Returns an instance of the form to be used
+    def get_form(self, form_class=None):
+        return super().get_form(form_class)
+
+    # Called if the form is valid
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.request.headers.get('HX-Request'):
+            return render(self.request, 'risks/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=self.request.user.id)})
+        return response
+
+    # Called if the form is invalid
+    def form_invalid(self, form):
+        return super().form_invalid(form)
+
+    # Returns the URL to redirect to when the form is successfully submitted
+    def get_success_url(self):
+        return reverse_lazy('home')
