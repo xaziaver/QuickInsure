@@ -2,15 +2,18 @@
 
 {% block content %}
   <h2>Welcome, {{ user.username }}!</h2>
-  <a class="generic-button" href="{% url 'logout' %}">Logout</a>
-  <p>
-    <br>
-    <a class="generic-button" href="{% url 'add_risk' %}">Add New Risk</a>
+
+  <div class="button-container">
+    <a class="action-button" href="{% url 'logout' %}">Logout</a>
+    <a class="action-button" href="{% url 'add_risk' %}">Add New Risk</a>
+    <a class="action-button" href="{% url 'add_quote' %}">Add New Quote</a>
+  </div>
+
+  <div class="risks-container">
     {% for risk in risks %}
-    <ul>{{ risk.display }}</ul>
+    <div class="risk-item">{{ risk.display }}</div>
     {% endfor %}
-    <br>
-    <a class="generic-button" href="{% url 'add_quote' %}">Add New Quote</a>
-  </p>
+  </div>
+  
   <!-- Add more navigation links as needed -->
 {% endblock %}

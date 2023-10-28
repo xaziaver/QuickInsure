@@ -1,52 +1,79 @@
-/* Reset some default browser styles */
-body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, form, input, button {
-    margin: 0;
-    padding: 0;
-    border: none;
-    font-family: Arial, sans-serif;
+:root {
+    --olive-green: #5a6c2d;
+    --bronze: #b37d40;
+    --background: #e9ece5;
+    --dark-background: #d1d5cb;
+    --light-olive: #879348;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 body {
-    background-color: #F4F8FC;
-}
-
-.logo img {
-    width: 200px;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background);
+    color: var(--olive-green);
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.header, .footer {
+    background-color: var(--dark-background);
+    color: #FFF;
     padding: 20px 0;
 }
 
-.messages {
-    list-style-type: none;
+.logo img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    flex: none;
+}
+
+.logo-container {
+    text-align: left;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.button-container {
     margin: 20px 0;
-    padding: 0;
 }
 
-.messages li {
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    margin-bottom: 10px;
+.action-button {
+    background-color: var(--bronze);
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+    outline: none;
     border-radius: 5px;
+    margin: 5px 0;
 }
 
-.messages li.error {
-    background-color: #f8d7da;
-    color: #721c24;
+.action-button:hover {
+    background-color: darken(var(--bronze), 10%);
 }
 
-.messages li.success {
-    background-color: #d4edda;
-    color: #155724;
+.risks-container {
+    margin-top: 20px;
+}
+
+.risk-item {
+    margin-bottom: 10px;
 }

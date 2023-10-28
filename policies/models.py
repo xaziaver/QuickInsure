@@ -30,4 +30,3 @@ class Policy(models.Model):
     #forms = 
     
     #account = 
-

@@ -1,9 +1,27 @@
 {% extends 'quotes/quote_base.html' %}
 
 {% block quote_content %}
-    <h2>Get Your Quote</h2>
-    
-    {% include 'risks/_risk_addDelView.html' %}
-    <!-- forms will go here -->
-    
+<div class="section-container">
+    <input type="checkbox" id="risk-toggle" class="toggle-input" 
+           hx-get="{% url 'view_risk' %}" 
+           hx-trigger="change" 
+           hx-vals="{is_checked: this.checked}" 
+           hx-target="#risk-content">
+    <label class="section-title" for="risk-toggle">Risk Details</label>
+    <div class="section-content">
+        <div class="inner-content" id="risk-content"></div>
+    </div>
+</div>
+<div class="section-container">
+    <input type="checkbox" id="policy-toggle" class="toggle-input" 
+           hx-get="{% url 'view_policy' %}" 
+           hx-trigger="change" 
+           hx-vals="{is_checked: this.checked}" 
+           hx-target="#policy-content">
+    <label class="section-title" for="policy-toggle">Policy Details</label>
+    <div class="section-content">
+        <div class="inner-content" id="policy-content"></div>
+    </div>
+</div>
+<!-- Similarly, add other sections -->
 {% endblock %}

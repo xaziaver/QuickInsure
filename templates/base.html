@@ -1,16 +1,16 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-{% block additional_styles %}{% endblock %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}QuickInsure{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    {% block additional_styles %}{% endblock %}
 </head>
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <header>
-        <div class="container">
+        <div class="logo-container">
             <div class="logo">
-                <img src="{% static 'images/brand_logo.png' %}" alt="QuickInsure Logo">
+                <img src="{% static 'images/brand-logo.png' %}" alt="QuickInsure Logo">
             </div>
             <nav>
                 <!-- Navigation goes here -->
@@ -18,14 +18,16 @@
         </div>
     </header>
     
-    <div>
+    <div class="container">
         {% block content %}
         <!-- Content goes here -->
         {% endblock %}
     </div>
     
     <footer>
-        <!-- Footer goes here -->
+        <div class="container">
+            <!-- Footer goes here -->
+        </div>
     </footer>
     <script src="https://unpkg.com/htmx.org@1.1.0"></script>
 </body>

@@ -52,3 +52,6 @@ class RiskCreateView(CreateView):
     # Returns the URL to redirect to when the form is successfully submitted
     def get_success_url(self):
         return reverse_lazy('home')
+
+def ViewRisk(request):
+    return render(request, 'risks/risk_details.html')
