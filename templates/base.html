@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>{% block title %}QuickInsure{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     {% block additional_styles %}{% endblock %}
 </head>
@@ -29,6 +30,6 @@
             <!-- Footer goes here -->
         </div>
     </footer>
-    <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
 </body>
 </html>
