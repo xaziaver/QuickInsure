@@ -20,7 +20,8 @@ class Policy(models.Model):
         choices=PRODUCT_CHOICES,
         default=PRODUCT_CHOICES[1],
     )
-    type = models.CharField(
+
+    policy_type = models.CharField(
         max_length=3,
         choices=TYPE_CHOICES,
         default=TYPE_CHOICES[1],
@@ -28,5 +29,4 @@ class Policy(models.Model):
     
     #coverages = 
     #forms = 
-    
     #account = 

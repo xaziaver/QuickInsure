@@ -1,3 +1,6 @@
 <div id="policyDetails-container">
-    Nothing yet
+    <p>Effective Date: {{ policy.effective_date }}</p>
+    <p>Expiration Date: {{ policy.expiration_date }}</p>
+    <p>Product: {{ policy.get_product_display }}</p>
+    <p>Type: {{ policy.get_type_display }}</p>
 </div>

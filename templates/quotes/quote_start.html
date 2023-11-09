@@ -1,9 +1,14 @@
 {% extends 'quotes/quote_base.html' %}
 
 {% block quote_content %}
+<button type="button" hx-post="{% url 'save_all_sections' %}" hx-include="*form" hx-target="#save-status">
+    Save Progress
+</button>
+<div id="save-status"></div>
+
 <div class="section-container">
     <input type="checkbox" id="risk-toggle" class="toggle-input" 
-           hx-get="{% url 'view_risk' %}" 
+           hx-get="{% url 'view_risk' %}"
            hx-trigger="change once"
            hx-target="#risk-content">
     <label class="section-title" for="risk-toggle">Risk Details</label>
@@ -11,6 +16,7 @@
         <div class="inner-content" id="risk-content"></div>
     </div>
 </div>
+
 <div class="section-container">
     <input type="checkbox" id="policy-toggle" class="toggle-input" 
            hx-get="{% url 'view_policy' %}" 
@@ -21,5 +27,6 @@
         <div class="inner-content" id="policy-content"></div>
     </div>
 </div>
-<!-- Similarly, add other sections -->
+
+
 {% endblock %}
