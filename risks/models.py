@@ -4,6 +4,7 @@ from django.conf import settings
 
 class Risk(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    
     address = models.CharField(max_length=255)
     size = models.IntegerField()    # sq feet living area
     year_built = models.IntegerField()
