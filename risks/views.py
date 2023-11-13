@@ -61,6 +61,6 @@ class RiskCreateView(CreateView):
 @htmx_required
 @require_GET
 # from quote_start.html
-def ViewRisk(request, risk_id):
+def ViewRisk(request):
     user_risks = Risk.objects.filter(user_id=request.user.id)
     return render(request, 'risks/risk_details.html', {'risks': user_risks})

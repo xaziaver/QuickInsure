@@ -1,10 +1,21 @@
 {% extends 'quotes/quote_base.html' %}
 
 {% block quote_content %}
-<button type="button" hx-post="{% url 'save_all_sections' %}" hx-include="*form" hx-target="#save-status">
+<button type="button" hx-post="{% url 'save_quote' %}" hx-include="*form" hx-target="#save-status">
     Save Progress
 </button>
 <div id="save-status"></div>
+
+<div class="section-container">
+    <input type="checkbox" id="basic-toggle" class="toggle-input" 
+           hx-get="{% url 'view_basic' new_quote_id %}" 
+           hx-trigger="change once"
+           hx-target="#basic-content">
+    <label class="section-title" for="basic-toggle">Basic Details</label>
+    <div class="section-content">
+        <div class="inner-content" id="basic-content"></div>
+    </div>
+</div>
 
 <div class="section-container">
     <input type="checkbox" id="risk-toggle" class="toggle-input" 
@@ -17,16 +28,7 @@
     </div>
 </div>
 
-<div class="section-container">
-    <input type="checkbox" id="policy-toggle" class="toggle-input" 
-           hx-get="{% url 'view_policy' %}" 
-           hx-trigger="change once"
-           hx-target="#policy-content">
-    <label class="section-title" for="policy-toggle">Policy Details</label>
-    <div class="section-content">
-        <div class="inner-content" id="policy-content"></div>
-    </div>
-</div>
+
 
 
 {% endblock %}

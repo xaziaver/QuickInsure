@@ -44,10 +44,12 @@ INSTALLED_APPS = [
     'account',
     'analytics',
     'claims',
+    'coverages',
     'forms',
     'policies',
     'quotes',
     'risks',
+    'transactions',
     'users',
 ]
 

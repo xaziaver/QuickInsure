@@ -19,6 +19,10 @@ su - postgres -c "psql -c \"GRANT ALL PRIVILEGES ON DATABASE data TO admin;\""
 su - postgres -c "psql -c \"ALTER USER admin CREATEDB;\""
 su - postgres -c "psql data -c \"GRANT ALL PRIVILEGES ON SCHEMA public TO admin;\""
 
+# Deleting old migration files except __init__.py
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+
 # Making migrations
 python manage.py makemigrations
 

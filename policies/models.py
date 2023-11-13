@@ -3,18 +3,15 @@ from django.conf import settings
 from datetime import date
 
 
-class Policy(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    risk = models.ForeignKey('Risk', on_delete=models.CASCADE)
-    originating_quote = models.OneToOneField('Quote', on_delete=models.SET_NULL, null=True, blank=True)
+class BaseInputs(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    risk = models.ForeignKey('risks.Risk', on_delete=models.SET_NULL, null=True)
+    latest_coverage_group = models.ForeignKey('coverages.CoverageGroup', on_delete=models.SET_NULL, null=True)
+    latest_claim_group = models.ForeignKey('claims.ClaimGroup', on_delete=models.SET_NULL, null=True)
+    latest_form_group = models.ForeignKey('forms.FormGroup', on_delete=models.SET_NULL, null=True)
     
-    #policy_inputs = models.OneToOneField(BaseInputs, on_delete=models.CASCADE)
-    premium = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=100)
-
-'''class BaseInputs(models.Model):
     effective_date = models.DateField(default=date.today)
-    expiration_date = models.DateField()
+    expiration_date = models.DateField(null=True)
 
     PRODUCT_CHOICES = [
         ("HOME", "Homeowner's Insurance"),
@@ -27,18 +24,27 @@ class Policy(models.Model):
     ]
 
     product = models.CharField(
-        max_length=25,
+        max_length=50,
         choices=PRODUCT_CHOICES,
         default=PRODUCT_CHOICES[1],
     )
 
     policy_type = models.CharField(
-        max_length=3,
+        max_length=25,
         choices=TYPE_CHOICES,
         default=TYPE_CHOICES[1],
     )
-    
-    #coverages = 
-    #forms = 
-    #account = 
-    '''
+
+    class Meta:
+        abstract = True
+
+class BaseOutputs(models.Model):
+    premium = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    status = models.CharField(max_length=10, null=True)
+
+    class Meta:
+        abstract = True
+
+class Policy(BaseInputs, BaseOutputs, models.Model):
+    originating_quote = models.OneToOneField('quotes.Quote', on_delete=models.SET_NULL, null=True, blank=True)
+    term = models.PositiveSmallIntegerField(null=True)
