@@ -7,14 +7,27 @@
 
 {% block content %}
 <div class="quote-container">
-    <div class="progress-bar"></div>
-    
+
     {% block quote_content %}{% endblock %}
-    
+
     <div class="menu">
-        <button id="back-btn">⟵ Back</button>
-        <a href="{% url 'home' %}"><button id="home-btn">🏠 Home</button></a>
-        <button id="next-btn">Next ⟶</button>
+        <button id="back-btn">
+            ⟵ Back
+        </button>
+        <div class="flex-grow"></div>
+        <a href="{% url 'home' %}" class="btn" id="home-btn">
+            🏠 Home
+        </a>
+        <button id="save-btn" hx-post="{% url 'save_quote' %}" hx-include="*form" hx-target="#save-status">
+            💾 Save
+        </button>
+        <div class="flex-grow"></div>
+        <button id="next-btn">
+            Next ⟶
+        </button>
     </div>
+    <div id="save-status"></div>
+    <div class="progress-bar"></div>
+
 </div>
 {% endblock %}

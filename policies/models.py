@@ -24,15 +24,15 @@ class BaseInputs(models.Model):
     ]
 
     product = models.CharField(
-        max_length=50,
+        max_length=25,
         choices=PRODUCT_CHOICES,
-        default=PRODUCT_CHOICES[1],
+        default=PRODUCT_CHOICES[1][0],
     )
 
     policy_type = models.CharField(
-        max_length=25,
+        max_length=10,
         choices=TYPE_CHOICES,
-        default=TYPE_CHOICES[1],
+        default=TYPE_CHOICES[1][0],
     )
 
     class Meta:
@@ -41,6 +41,7 @@ class BaseInputs(models.Model):
 class BaseOutputs(models.Model):
     premium = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     status = models.CharField(max_length=10, null=True)
+    number = models.CharField(max_length=25, null=True)
 
     class Meta:
         abstract = True

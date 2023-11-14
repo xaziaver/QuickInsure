@@ -13,11 +13,24 @@
 
 .menu {
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    justify-content: center;
+    gap: 20px; 
 }
 
-#back-btn, #home-btn, #next-btn {
+.flex-grow {
+    flex-grow: 1;
+}
+
+.menu a,
+.menu button {
+    margin-bottom: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+#back-btn, #home-btn, #next-btn, #save-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -26,16 +39,17 @@
 
 #back-btn, #next-btn {
     background-color: var(--bronze);
-    color: #FFF;
+    color: #e9ece5;
 }
 
-#home-btn {
+#home-btn, #save-btn {
     background-color: var(--light-olive);
-    color: #FFF;
+    color: #e9ece5
 }
 
 .section-container {
     margin-bottom: 20px;
+    background-color: #e9ece5
 }
 
 .section-title {

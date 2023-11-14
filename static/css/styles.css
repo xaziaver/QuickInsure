@@ -40,11 +40,10 @@ body {
 }
 
 .logo-container {
-    text-align: left;
+    justify-content: center;
     margin: 0;
     padding: 20px;
     display: flex;
-    align-items: center;
 }
 
 .button-container {
@@ -68,10 +67,10 @@ body {
     background-color: darken(var(--bronze), 10%);
 }
 
-.risks-container {
+.risks-container, .quotes-container {
     margin-top: 20px;
 }
 
-.risk-item {
+.item {
     margin-bottom: 10px;
 }
