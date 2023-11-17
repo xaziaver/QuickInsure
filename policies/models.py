@@ -4,7 +4,7 @@ from datetime import date
 
 
 class BaseInputs(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     risk = models.ForeignKey('risks.Risk', on_delete=models.SET_NULL, null=True)
     latest_coverage_group = models.ForeignKey('coverages.CoverageGroup', on_delete=models.SET_NULL, null=True)
     latest_claim_group = models.ForeignKey('claims.ClaimGroup', on_delete=models.SET_NULL, null=True)
@@ -41,7 +41,7 @@ class BaseInputs(models.Model):
 class BaseOutputs(models.Model):
     premium = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     status = models.CharField(max_length=10, null=True)
-    number = models.CharField(max_length=25, null=True)
+    number = models.CharField(max_length=25, null=True, default='Q10012023')
 
     class Meta:
         abstract = True

@@ -1,0 +1,7 @@
+<div id="coverageDetails-container">
+    {% for coverages in coverageGroup %}
+    <p>Coverage Group ID: {{ coverages.id }}</p>
+    <p>Quote Object ID: {{ coverages.object_id }}</p>
+    <p>Quote Number: {{ coverages.content_object.number }}</p>
+    {% endfor %}
+</div>
