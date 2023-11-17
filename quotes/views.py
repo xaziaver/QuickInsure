@@ -1,16 +1,20 @@
+from django.urls import reverse_lazy
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView
 from django.views.decorators.http import require_GET
 from common.decorators import htmx_required
 
 from .models import Quote
+from .forms import BasicDetailForm
 from risks.models import Risk
+from risks.forms import RiskForm
 from policies.models import Policy
 from coverages.models import CoverageGroup
 from claims.models import ClaimGroup
 from forms.models import FormGroup
 
 
-from risks.forms import RiskForm
+
 
 def QuoteStart(request):
     # check that user is authenticated
@@ -42,3 +46,9 @@ def QuoteSave(request):
 def QuoteViewBasic(request, quote_id):
     quote = Quote.objects.get(id=quote_id)
     return render(request, 'quotes/quote_basic.html', {'quote': quote})
+
+class BasicDetailView(CreateView):
+    model = Quote
+    form_class = BasicDetailForm
+    template_name = 'quotes/quote_basic_form.html'
+    success_url = reverse_lazy('home')

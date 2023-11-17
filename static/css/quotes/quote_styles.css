@@ -90,3 +90,52 @@
 .inner-content {
     padding: 0 10px; /* Adjust as needed. Moved padding from section-title to here. */
 }
+
+/* quote input sections */
+
+form {
+    background-color: #e9ece5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+form h1 {
+    color: var(--olive-green);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form label {
+    color: var(--olive-green);
+    display: block;
+    margin-top: 10px;
+}
+
+form input,
+form select,
+form textarea {
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--bronze);
+    border-radius: 5px;
+}
+
+form button {
+    background-color: var(--bronze);
+    color: #e9ece5;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block; /* Center the button */
+    margin: 10px auto; /* Center the button */
+}
+
+form button:hover {
+    background-color: darken(var(--bronze), 10%);
+}
