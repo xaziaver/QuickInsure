@@ -18,7 +18,7 @@
         <a href="{% url 'home' %}" class="btn" id="home-btn">
             🏠 Home
         </a>
-        <button id="save-btn" hx-post="{% url 'save_quote' %}" hx-include="*form" hx-target="#save-status">
+        <button id="save-btn" hx-post="{% url 'save_quote' new_quote.id %}" hx-include="#basic-content, #coverage-content" hx-target="#save-status">
             💾 Save
         </button>
         <div class="flex-grow"></div>

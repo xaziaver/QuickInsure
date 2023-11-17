@@ -8,7 +8,7 @@
   <div class="risks-container">
     <h2>Risks</h2>
     {% for risk in risks %}
-    <div class="item">{{ risk.display }}</div>
+      <div class="item">{{ risk.display }}</div>
     {% endfor %}
     <div class="button-container">
       <a class="action-button" href="{% url 'add_risk' %}">Add New Risk</a>
@@ -18,7 +18,10 @@
   <div class="quotes-container">
     <h2>Quotes</h2>
     {% for quote in quotes %}
-    <div class="item">{{ quote.display }}</div>
+      <div class="quote-item">
+        <div class="quote-details">{{ quote.display }}</div>
+        <a class="action-button" href="{% url 'resume_quote' quote.id %}">Resume</a>
+      </div>
     {% endfor %}
     <div class="button-container">
       <a class="action-button" href="{% url 'add_quote' %}">Add New Quote</a>

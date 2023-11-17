@@ -1,9 +1,9 @@
 
 {% block content %}
-    <h1>Coverage Details</h1>
     <form method="post" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Save</button>
+        <input type="hidden" name="form_type" value="coverage">
     </form>
 {% endblock %}

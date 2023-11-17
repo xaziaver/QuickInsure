@@ -50,6 +50,30 @@ body {
     margin: 20px 0;
 }
 
+.quote-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--light-olive);
+    border-radius: 5px;
+}
+  
+.quote-id,
+.quote-date {
+    margin-right: 10px;
+    display: inline-block;
+}
+  
+.quote-id {
+    font-weight: bold;
+}
+  
+.quote-date {
+    color: var(--dark-background);
+}
+  
 .action-button {
     background-color: var(--bronze);
     border: none;
@@ -72,5 +96,7 @@ body {
 }
 
 .item {
-    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -27,7 +27,7 @@
 
 <div class="section-container">
     <input type="checkbox" id="coverage-toggle" class="toggle-input" 
-           hx-get="{% url 'view_coverage' new_quote.id %}"
+           hx-get="{% url 'view_coverage' new_coverage_group.id %}"
            hx-trigger="change once"
            hx-target="#coverage-content">
     <label class="section-title" for="coverage-toggle">Coverage Details</label>
