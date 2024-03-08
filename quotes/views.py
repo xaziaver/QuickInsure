@@ -69,12 +69,14 @@ def QuoteSave(request, quote_id):
                         basic_form = BasicDetailForm(basic_data, instance=quote)
                         if basic_form.is_valid():
                             basic_form.save()
+                    '''
                     elif form_type == 'coverage':
                         # Process coverage form data
                         coverage_data = {k: v for k, v in request.POST.items() if k != 'form_type'}
                         coverage_form = CoverageDetailForm(coverage_data, instance=quote.latest_coverage_group)
                         if coverage_form.is_valid():
                             coverage_form.save()
+                    '''
         # ... continue for other forms
 
         message = "Data saved successfully"

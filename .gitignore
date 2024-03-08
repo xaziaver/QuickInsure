@@ -9,3 +9,7 @@ venv/
 
 # OS generated
 .DS_Store
+
+# migrations except init (for now)
+*/migrations/*.py
+!*/migrations/__init__.py
