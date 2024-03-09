@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'forms',
     'policies',
     'quotes',
+    'rating',
     'risks',
     'transactions',
     'users',

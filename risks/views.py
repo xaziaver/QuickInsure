@@ -44,6 +44,7 @@ class RiskCreateView(CreateView):
 
     # Called if the form is valid
     def form_valid(self, form):
+        form.instance.user = self.request.user
         response = super().form_valid(form)
         if self.request.headers.get('HX-Request'):
             return render(self.request, 'risks/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=self.request.user.id)})
