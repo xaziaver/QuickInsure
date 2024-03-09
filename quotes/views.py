@@ -5,36 +5,35 @@ from django.views.decorators.http import require_GET
 from common.decorators import htmx_required
 
 from .models import Quote
-from .forms import BasicDetailForm
 from risks.models import Risk
-from risks.forms import RiskForm
-from policies.models import Policy
-from coverages.models import CoverageGroup
-from coverages.forms import CoverageDetailForm
-from claims.models import ClaimGroup
-from forms.models import FormGroup
+from coverages.models import Coverage
+from forms.models import Form
 
+from .forms import BasicDetailForm
+from risks.forms import RiskForm
+from coverages.forms import CoverageDetailForm
+
+# TODO: add rating object as an input group
+# TODO: add other forms from quote pages to QuoteSave() 
+#       and iterate to save data into appropriate data models
+# TODO: update QuoteSave() to handle non-POST requests to save without submitting
 
 def QuoteStart(request):
     # check that user is authenticated
     if request.user.is_authenticated:
-        # create new quote and input groups
-        new_quote = Quote.objects.create(user=request.user) 
-        new_coverage_group = CoverageGroup.objects.create(content_object=new_quote)
-        new_claim_group = ClaimGroup.objects.create(content_object=new_quote)
-        new_form_group = FormGroup.objects.create(content_object=new_quote)
 
-        # associate new quote with new input groups
-        new_quote.latest_coverage_group = new_coverage_group
-        new_quote.latest_claim_group = new_claim_group
-        new_quote.latest_form_group = new_form_group
-        new_quote.save()
+        # create new quote and input objects
+        new_quote_obj = Quote.objects.create(user=request.user)
+        new_coverage_obj = Coverage.objects.create(content_object=new_quote_obj)
+        #new_rating_obj = Rating.objects.create(content_object=new_quote_obj)
+        new_form_obj = Form.objects.create(content_object=new_quote_obj)
 
+        # objects to be passed to the quote landing page
         context = {
-            'new_quote': new_quote,
-            'new_coverage_group': new_coverage_group,
-            'new_claim_group': new_claim_group,
-            'new_form_group': new_form_group,
+            'new_quote': new_quote_obj,
+            'new_coverage': new_coverage_obj,
+            'new_form': new_form_obj,
+            #'new_rating': new_rating_obj,
         }
 
         return render(request, 'quotes/quote_start.html', context)
@@ -43,13 +42,14 @@ def QuoteStart(request):
 
 def QuoteResume(request, quote_id):
     quote = get_object_or_404(Quote, id=quote_id)
-    
+    coverage = quote.coverage.first()
+    form = quote.form.first()
+
     # use same names as QuoteStart to match html page
     context = {
         'new_quote': quote,
-        'new_coverage_group': quote.latest_coverage_group,
-        'new_claim_group': quote.latest_claim_group,
-        'new_form_group': quote.latest_form_group,
+        'new_coverage': coverage,
+        'new_form': form,
     }
 
     return render(request, 'quotes/quote_start.html', context)
@@ -58,6 +58,8 @@ def QuoteSave(request, quote_id):
     if request.method == 'POST':
         # Fetch the existing Quote object
         quote = Quote.objects.get(id=quote_id)
+        coverage = quote.coverage.first()
+        form = quote.form.first()
 
         # Process each form based on its type
         for key, value in request.POST.lists():
@@ -69,14 +71,12 @@ def QuoteSave(request, quote_id):
                         basic_form = BasicDetailForm(basic_data, instance=quote)
                         if basic_form.is_valid():
                             basic_form.save()
-                    '''
                     elif form_type == 'coverage':
                         # Process coverage form data
                         coverage_data = {k: v for k, v in request.POST.items() if k != 'form_type'}
-                        coverage_form = CoverageDetailForm(coverage_data, instance=quote.latest_coverage_group)
+                        coverage_form = CoverageDetailForm(coverage_data, instance=coverage)
                         if coverage_form.is_valid():
                             coverage_form.save()
-                    '''
         # ... continue for other forms
 
         message = "Data saved successfully"

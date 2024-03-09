@@ -1,7 +1,7 @@
 from django import forms
-from .models import CoverageGroup
+from .models import Coverage
 
 class CoverageDetailForm(forms.ModelForm):
     class Meta:
-        model = CoverageGroup
-        fields = ['id', 'object_id']
+        model = Coverage
+        fields = ['id', 'object_id', 'save_test']

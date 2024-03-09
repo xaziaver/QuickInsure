@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+# TODO: define risk types depending on Quote/Policy product and type selected
+# TODO: get a basic setup for valid_address() working to verify U.S. addresses
 
 class Risk(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
