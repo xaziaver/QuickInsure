@@ -1,0 +1,15 @@
+
+{% block content %}
+    <form method="post" novalidate>
+        {% csrf_token %}
+        <p>{{ form.product.label_tag }} {{ form.product }}</p>
+        <p>{{ form.policy_type.label_tag }} {{ form.policy_type }}</p>
+        <p>{{ form.term.label_tag }} {{ form.term }}</p>
+        <p>{{ form.effective_date.label_tag }} {{ form.effective_date }}</p>
+        <p id="expiration_date_container">
+            {{ form.expiration_date.label_tag }} {{ form.expiration_date }}
+        </p>
+        <button type="submit">Save</button>
+        <input type="hidden" name="form_type" value="basic">
+    </form>
+{% endblock %}

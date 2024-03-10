@@ -12,7 +12,7 @@ class Policy(BaseInput, BaseOutput):
     #claim = models.ForeignKey('claims.Claim', on_delete=models.SET_NULL, null=True)
 
     # holds the current term of the policy
-    term = models.PositiveSmallIntegerField(null=True)
+    current_term = models.PositiveSmallIntegerField(null=True)
     
     # parties associated with the policy
     # e.g.. the user, Mortgagee, Lienholder and others added on the policy

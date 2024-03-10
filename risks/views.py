@@ -20,7 +20,7 @@ class RiskCreateView(CreateView):
         print(request.POST)
         if action == 'cancel':
             if request.headers.get('HX-Request'):
-                return render(request, 'risks/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=request.user.id)})
+                return render(request, 'partials/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=request.user.id)})
             else:
                 return HttpResponseRedirect(self.get_success_url())
         elif action == 'add' or action is None:
@@ -47,7 +47,7 @@ class RiskCreateView(CreateView):
         form.instance.user = self.request.user
         response = super().form_valid(form)
         if self.request.headers.get('HX-Request'):
-            return render(self.request, 'risks/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=self.request.user.id)})
+            return render(self.request, 'partials/_risk_addDelView.html', {'risks': self.model.objects.filter(user_id=self.request.user.id)})
         return response
 
     # Called if the form is invalid
@@ -64,4 +64,4 @@ class RiskCreateView(CreateView):
 # from quote_start.html
 def ViewRisk(request):
     user_risks = Risk.objects.filter(user_id=request.user.id)
-    return render(request, 'risks/risk_details.html', {'risks': user_risks})
+    return render(request, 'risks/details.html', {'risks': user_risks})

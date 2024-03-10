@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import UpdateView
 from django.views.decorators.http import require_GET
 from common.decorators import htmx_required
+from django.http import JsonResponse
+from datetime import datetime, timedelta
 
 from .models import Quote
 from risks.models import Risk
@@ -20,7 +22,7 @@ from .forms import BasicDetailForm
 from risks.forms import RiskForm
 from coverages.forms import CoverageDetailForm
 
-
+# start a new quote from the home page
 def QuoteStart(request):
     # check that user is authenticated
     if request.user.is_authenticated:
@@ -44,11 +46,11 @@ def QuoteStart(request):
             'new_rating': new_rating_obj,
             'new_form': new_form_obj,
         }
-        return render(request, 'quotes/quote_start.html', context)
+        return render(request, 'quotes/start.html', context)
     else:
         return redirect('/')  
 
-
+# resume a previously saved quote from the home page
 def QuoteResume(request, quote_id):
     quote = get_object_or_404(Quote, id=quote_id)
     coverage = quote.coverage.first()
@@ -63,9 +65,9 @@ def QuoteResume(request, quote_id):
         'new_form': form,
     }
 
-    return render(request, 'quotes/quote_start.html', context)
+    return render(request, 'quotes/start.html', context)
 
-
+# appears in footer of page during quoting process
 def QuoteSave(request, quote_id):
     if request.method == 'POST':
         # Fetch the existing Quote object
@@ -91,11 +93,11 @@ def QuoteSave(request, quote_id):
         # ... continue for other forms
 
         message = "Data saved successfully"
-        return render(request, 'quotes/_quote_save_status.html', {'message': message})
+        return render(request, 'partials/_quote_save_status.html', {'message': message})
 
     # Handle non-POST requests here
 
-
+# QuoteStart helper, value to use for number field
 def generate_quote_number(quote_obj):
     quote_number = ('Q'
                     + str(quote_obj.start_date.year)
@@ -106,16 +108,31 @@ def generate_quote_number(quote_obj):
     return quote_number
 
 
-@htmx_required
-@require_GET
-# from quote_start.html
-def QuoteViewBasic(request, quote_id):
-    quote = Quote.objects.get(id=quote_id)
-    return render(request, 'quotes/quote_basic.html', {'quote': quote})
+#@htmx_required
+#@require_GET
+# when Basic Details section is expanded, render the html partial within the page
+#def QuoteViewBasic(request, quote_id):
+#    quote = Quote.objects.get(id=quote_id)
+#    return render(request, 'quotes/basic.html', {'quote': quote})
 
 
 class BasicDetailView(UpdateView):
     model = Quote
     form_class = BasicDetailForm
-    template_name = 'quotes/quote_basic_form.html'
+    template_name = 'quotes/basic_form.html'
     success_url = reverse_lazy('home')
+
+# when the term or effective_date changes, calculate the new 
+def calculate_expiration_date(request):
+    effective_date_str = request.GET.get('effective_date')
+    term_months = request.GET.get('term', 0)
+    try:
+        effective_date = datetime.strptime(effective_date_str, "%Y-%m-%d")
+        term_days = int(term_months) * 30  # Assume 30 days per month
+        expiration_date = effective_date + timedelta(days=term_days)
+        # Return just the input field you want to update to replace it entirely
+        return render(request, 'partials/_quote_update_exp_date.html', {
+            'expiration_date': expiration_date.strftime("%Y-%m-%d")
+        })
+    except ValueError:
+        return JsonResponse({"error": "Invalid parameters"}, status=400)

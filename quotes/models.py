@@ -33,13 +33,13 @@ class BaseInput(models.Model):
     product = models.CharField(
         max_length=25,
         choices=PRODUCT_CHOICES,
-        default=PRODUCT_CHOICES[1][0],
+        default=PRODUCT_CHOICES[0][0],
     )
 
     policy_type = models.CharField(
         max_length=10,
         choices=TYPE_CHOICES,
-        default=TYPE_CHOICES[1][0],
+        default=TYPE_CHOICES[0][0],
     )
 
     class Meta:
@@ -60,6 +60,18 @@ class Quote(BaseInput, BaseOutput):
     update_date = models.DateTimeField(auto_now=True, null=False)
     # if a quote is bound this is the assigned policy
     bound_policy = models.OneToOneField('policies.Policy', on_delete=models.SET_NULL, null=True, blank=True)
+    
+    TERM_LENGTHS = [
+        ("6", "6 months"),
+        ("12", "1 year"),
+        ("18", "18 months"),
+        ("24", "2 years"),
+    ]
+    term = models.PositiveSmallIntegerField(
+        choices=TERM_LENGTHS,
+        default=TERM_LENGTHS[1][0],
+    )
+
 
     ### TRACKING ### ---> probably will move to analytics
 
@@ -79,6 +91,8 @@ class Quote(BaseInput, BaseOutput):
     #referral_source =
 
     ################
+
+
 
     # returns HTML description of the Quote
     def display(self):
